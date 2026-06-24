@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaBars, FaGithub, FaLinkedinIn, FaTimes } from "react-icons/fa";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
-
+// import resumePDF from "../../assets/resume/Dhruv Resume.pdf";
 const navItems = [
   { name: "About", link: "#about" },
   { name: "Education", link: "#education" },
@@ -14,7 +14,11 @@ const navItems = [
 
 const socialLinks = [
   { icon: <FaGithub />, link: "https://github.com/DHRUVMALI007", label: "GitHub" },
-  { icon: <FaLinkedinIn />, link: "https://www.linkedin.com/in/dhruv-mali-b6305027a/", label: "LinkedIn" },
+  {
+    icon: <FaLinkedinIn />,
+    link: "https://www.linkedin.com/in/dhruv-mali-b6305027a/",
+    label: "LinkedIn",
+  },
 ];
 
 const Navbar = () => {
@@ -40,7 +44,11 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-        <a href="#home" onClick={() => setMenuOpen(false)} className="group flex min-w-0 items-center gap-3">
+        <a
+          href="#home"
+          onClick={() => setMenuOpen(false)}
+          className="group flex min-w-0 items-center gap-3"
+        >
           <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-400/30 bg-cyan-400/10 shadow-[0_0_25px_rgba(6,182,212,0.25)]">
             <span className="absolute inset-0 rounded-2xl bg-cyan-400/10 blur-md transition group-hover:bg-cyan-400/20" />
             <span className="relative text-lg font-black text-cyan-300">DM</span>
@@ -84,8 +92,8 @@ const Navbar = () => {
           ))}
 
           <a
-            href="/Dhruv_Mali_Resume.pdf"
-            download
+            href="/resume/Dhruv_Resume.pdf"
+            download="Dhruv_Resume.pdf"
             className="group ml-2 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-2.5 text-sm font-black text-slate-950 transition hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.35)]"
           >
             <HiOutlineDocumentDownload className="text-lg transition group-hover:translate-y-0.5" />
@@ -149,8 +157,8 @@ const Navbar = () => {
                 </div>
 
                 <a
-                  href="/Dhruv_Mali_Resume.pdf"
-                  download
+                  href="/resume/Dhruv_Resume.pdf"
+                  download="Dhruv_Resume.pdf"
                   onClick={() => setMenuOpen(false)}
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-2.5 text-sm font-black text-slate-950"
                 >
