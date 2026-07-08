@@ -1,12 +1,19 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaGithub,
+  FaLinkedinIn,
+  FaMapMarkerAlt,
+  FaPaperPlane,
+} from "react-icons/fa";
 
 const contactItems = [
   {
     icon: <FaEnvelope />,
     title: "Email",
-    value: "your.email@example.com",
-    link: "mailto:your.email@example.com",
+    value: "dmali9786@gmail.com",
+    link: "mailto:dmali9786@gmail.com",
   },
   {
     icon: <FaLinkedinIn />,
@@ -23,12 +30,50 @@ const contactItems = [
   {
     icon: <FaMapMarkerAlt />,
     title: "Location",
-    value: "India",
+    value: "Ahemdabad , Gujarat",
     link: "#contact",
   },
 ];
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const mailBody = `
+Hello Dhruv,
+
+${formData.message}
+
+-------------------------
+Sender Details:
+Name: ${formData.name}
+Email: ${formData.email}
+-------------------------
+`;
+
+    const mailtoLink = `mailto:dmali9786@gmail.com?subject=${encodeURIComponent(
+      formData.subject
+    )}&body=${encodeURIComponent(mailBody)}`;
+
+    window.location.href = mailtoLink;
+  };
+
   return (
     <section id="contact" className="section-shell">
       <motion.div
@@ -43,12 +88,14 @@ const Contact = () => {
         </p>
 
         <h2 className="mt-4 text-3xl font-black tracking-tight text-white sm:text-5xl">
-          Let&apos;s build something{" "}
-          <span className="gradient-text">intelligent</span>
+          Let&apos;s Create AI-Powered{" "}
+          <span className="gradient-text">Solutions</span>
         </h2>
 
         <p className="mt-6 text-base leading-8 text-slate-400 sm:text-lg">
-          Have an opportunity, project idea, internship, or collaboration? Send me a message.
+          Interested in AI/ML projects, Generative AI solutions, internships,
+          research, or collaborations? Let's connect and build impactful
+          intelligent systems.
         </p>
       </motion.div>
 
@@ -86,10 +133,7 @@ const Contact = () => {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7 }}
           className="glass-card rounded-[2rem] p-6 sm:p-8"
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Thanks! Please connect this form with EmailJS or your backend.");
-          }}
+          onSubmit={handleSubmit}
         >
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
@@ -98,7 +142,10 @@ const Contact = () => {
               </label>
               <input
                 type="text"
+                name="name"
                 required
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Enter your name"
                 className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400"
               />
@@ -110,7 +157,10 @@ const Contact = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 required
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Enter your email"
                 className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400"
               />
@@ -123,8 +173,11 @@ const Contact = () => {
             </label>
             <input
               type="text"
+              name="subject"
               required
-              placeholder="Project / Internship / Collaboration"
+              value={formData.subject}
+              onChange={handleChange}
+              placeholder="AI/ML Project / Internship / Research Opportunity"
               className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400"
             />
           </div>
@@ -134,8 +187,11 @@ const Contact = () => {
               Message
             </label>
             <textarea
+              name="message"
               required
               rows="6"
+              value={formData.message}
+              onChange={handleChange}
               placeholder="Write your message..."
               className="w-full resize-none rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400"
             />

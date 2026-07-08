@@ -12,12 +12,13 @@ const Footer = () => {
           </a>
 
           <p className="mt-2 text-sm text-slate-500">
-            © {year} Dhruv Mali. Built with React, Tailwind CSS and Framer Motion.
+            © {year} Dhruv Mali. AI/ML Engineer | Generative AI Enthusiast | Building Intelligent
+            Solutions.
           </p>
         </div>
 
         <p className="flex items-center gap-2 text-sm text-slate-500">
-          Made with <FaHeart className="text-cyan-400" /> for AI/ML opportunities
+          Made with <FaHeart className="text-cyan-400" /> for AI Innovation & Machine Learning
         </p>
 
         <div className="flex gap-3">

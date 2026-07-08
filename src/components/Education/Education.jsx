@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import { FaGraduationCap, FaAward, FaBrain, FaUniversity } from "react-icons/fa";
+import {
+  FaGraduationCap,
+  FaAward,
+  FaBrain,
+  FaUniversity,
+} from "react-icons/fa";
 
 const educationData = [
   {
@@ -24,23 +29,27 @@ const educationData = [
   },
 ];
 
+const viewportSettings = {
+  once: true,
+  margin: "0px 0px -40% 0px",
+};
+
 const Education = () => {
   return (
     <section
       id="education"
-      className="relative mx-auto max-w-7xl overflow-hidden px-5 py-24 sm:px-6 lg:px-8"
+      className="relative mx-auto max-w-7xl overflow-hidden px-5 py-20 sm:px-6 sm:py-24 lg:px-8"
     >
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-[120px]" />
 
       <motion.div
-        initial={{ opacity: 0, y: 60 }}
+        initial={{ opacity: 0, y: 45 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={viewportSettings}
+        transition={{ duration: 0.75, ease: "easeOut" }}
         className="relative z-10"
       >
-        {/* Section Header */}
-        <div className="mx-auto mb-16 max-w-3xl text-center">
+        <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-200">
             <FaGraduationCap className="text-cyan-300" />
             Academic Background
@@ -60,25 +69,24 @@ const Education = () => {
           </p>
         </div>
 
-        {/* Education Cards */}
         <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2">
           {educationData.map((item, index) => (
             <motion.div
               key={item.degree}
-              initial={{ opacity: 0, y: 45 }}
+              initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: index * 0.15 }}
+              viewport={viewportSettings}
+              transition={{ duration: 0.65, delay: index * 0.12, ease: "easeOut" }}
               whileHover={{ y: -10 }}
-              className="group relative overflow-hidden rounded-[2rem] border border-slate-700/60 bg-slate-900/50 p-7 backdrop-blur-2xl transition duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_60px_rgba(6,182,212,0.12)] sm:p-8"
+              className="group relative overflow-hidden rounded-[2rem] border border-slate-700/60 bg-slate-900/50 p-6 backdrop-blur-2xl transition duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_60px_rgba(6,182,212,0.12)] sm:p-8"
             >
               <div
                 className={`absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r ${item.gradient}`}
               />
 
-              <div className="mb-7 flex items-start gap-5">
+              <div className="mb-7 flex flex-col gap-5 sm:flex-row sm:items-start">
                 <div
-                  className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r ${item.gradient} text-2xl text-slate-950 shadow-lg`}
+                  className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r ${item.gradient} text-2xl text-white shadow-lg`}
                 >
                   {item.icon}
                 </div>
@@ -90,7 +98,7 @@ const Education = () => {
 
                   <p className="mt-2 flex items-start gap-2 text-sm leading-6 text-cyan-300 sm:text-base">
                     <FaUniversity className="mt-1 shrink-0" />
-                    {item.institution}
+                    <span>{item.institution}</span>
                   </p>
                 </div>
               </div>
